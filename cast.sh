@@ -19,4 +19,4 @@ ffmpeg -y \
        -framerate 30 \
        -s $SIZE \
        -i :0.0$OFFS \
-       ~/videos/casts/out.mkv
+       ~/videos/casts/$(date +%s).mkv

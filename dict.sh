@@ -3,4 +3,4 @@
 # DICTIONARY => ROFI
 
 FILE="words.txt"
-cat $FILE | rofi -dmenu -theme list
+cat $FILE | rofi -dmenu -theme list -p 📝
