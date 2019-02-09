@@ -2,5 +2,5 @@
 
 # DICTIONARY => ROFI
 
-FILE="words.txt"
+FILE="$HOME/bin/words.txt"
 cat $FILE | rofi -dmenu -theme list -p 📝

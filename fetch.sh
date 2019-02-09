@@ -7,10 +7,15 @@ norm=$(tput sgr0)
 base=$(tput setaf 6)
 
 KERN=$(uname -rv | awk '{print $1;}')
+VER="$HOME/bin/ver.sh"
 
 echo -e ""
 echo -e "${bold}DISTRO\t${base}  ${norm}Arch Linux"
-echo -e "${bold}KERNEL\t${base}  ${norm}$KERN"
-echo -e "${bold}ZSH${norm}\t$(ver.sh zsh)"
-echo -e "${bold}EMACS${norm}\t$(ver.sh emacs)"
+sleep 0.5
+echo -e "${bold}KERNEL\t$($VER linux-zen)"
+sleep 0.5
+echo -e "${bold}ZSH${norm}\t$($VER zsh)"
+sleep 0.5
+echo -e "${bold}EMACS${norm}\t$($VER emacs)"
+sleep 1.5
 echo -e ""
