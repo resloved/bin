@@ -2,5 +2,14 @@
 
 # BATTERY => ROFI
 
-BAT=$(cat /sys/class/power_supply/BAT0/capacity)
-rofi -theme output -e "⚡ $BAT%"
+BAT="/sys/class/power_supply/BAT0"
+PCT=$(cat $BAT/capacity)
+
+if [ $(cat $BAT/status) == "Discharging" ]
+then
+   CHG="🌩️"
+else
+   CHG="⚡"
+fi
+
+rofi -theme output -e "$CHG $PCT%"
