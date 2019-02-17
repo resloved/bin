@@ -2,7 +2,7 @@
 
 # ROFI => EXIT i3 || SHUTDOWN
 
-ACT=$(echo -e "CANCEL\nEXIT\nSHUTDOWN" | rofi -dmenu -theme list -p "💻")
+ACT=$(echo -e "CANCEL\nEXIT\nSHUTDOWN" | rofi -dmenu -theme list -p "💻" -i)
 
 if [ $ACT == "EXIT" ]
 then
