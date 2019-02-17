@@ -14,9 +14,14 @@ else
     SIZE=$(xdpyinfo | grep dimensions | awk '{print $2;}')
 fi
 
+FOLDER="$HOME/videos/casts"
+
 ffmpeg -y \
+       -f alsa -ac 2 -i pulse \
        -f x11grab \
-       -framerate 30 \
        -s $SIZE \
        -i :0.0$OFFS \
-       ~/videos/casts/$(date +%s).mkv
+       -acodec pcm_s16le \
+       -vcodec libx264 \
+       -preset ultrafast -crf 0 -threads 0 \
+       $FOLDER/$(date +%s).mkv
