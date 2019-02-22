@@ -2,6 +2,12 @@
 
 # ROFI => STREAMLINK
 
-CHN=$(rofi -dmenu -theme entry -p "📡")
-RES=$(echo -e "480p\n720p\n720p60\n1080p60" | rofi -dmenu -theme list -p "📡")
-streamlink -player ffplay twitch.tv/$CHN $RES,best 
+if [ $1 == "-f" ] || [ $1 == "--following" ]; then
+    CHN=$(python $HOME/bin/live.py | rofi -dmenu -theme list -p "⭐")
+else
+    CHN=$(rofi -dmenu -theme entry -p "📜")
+fi
+
+if [ ! -z "$CHN" ]; then
+    streamlink -p ffplay twitch.tv/$CHN 720p,Best &
+fi
