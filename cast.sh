@@ -19,6 +19,7 @@ FOLDER="$HOME/videos/casts"
 ffmpeg -y \
        -f alsa -ac 2 -i pulse \
        -f x11grab \
+       -y -r 60 \
        -s $SIZE \
        -i :0.0$OFFS \
        -acodec pcm_s16le \
