@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 
-# ROFI => CHROMIUM
+# ROFI => BROWSER
 
-rofi -dmenu -theme entry -p 🧙‍♂️ | xargs -I{} ${1:-xdg-open} {}
+rofi -dmenu -theme entry -p  | \
+    xargs -I{} ${1:-xdg-open} {}

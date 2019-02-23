@@ -7,9 +7,9 @@ PCT=$(cat $BAT/capacity)
 
 if [ $(cat $BAT/status) == "Discharging" ]
 then
-   CHG="🌩️"
+   CHG=""
 else
-   CHG="⚡"
+   CHG=""
 fi
 
 rofi -theme output -e "$CHG $PCT%"

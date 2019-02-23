@@ -14,16 +14,16 @@ C_VOL=$(echo $CAP | awk -F '[][]' '{ print $2 }')
 
 if [ $M_MUTE == "on" ]
 then
-   M_MUTE="🎧"
+   M_MUTE=""
 else
-   M_MUTE="❌"
+   M_MUTE=""
 fi
    
 if [ $C_MUTE == "on" ]
 then
-   C_MUTE="🎤"
+   C_MUTE=""
 else
-   C_MUTE="❌"
+   C_MUTE=""
 fi
 
 rofi -theme output -e "$M_MUTE $M_VOL $C_MUTE $C_VOL"
