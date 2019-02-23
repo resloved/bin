@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-#REFRENCE: https://gist.github.com/0Skynet/833dd97620d44c345520
+# CREDIT - https://gist.github.com/0Skynet/833dd97620d44c345520
 
-import socket, sys
+import socket, sys, re
+import cfg
 
 HOST = "irc.twitch.tv"
 PORT = 6667
@@ -19,21 +20,21 @@ con.send(str.encode("JOIN " + CHAN + "\r\n"))
 clr = '\033[0m'
 
 def col(usr, msg):
-    
     a = str(hash(usr) % 6)
-
-    if sys.argv[1] in msg.lower():
+    if "@" + cfg.name in msg.lower():
         print('\033[1;97;41m' + usr + ":", msg + clr)
+    elif usr == cfg.name:
+        print('\033[1;97;45m' + usr + ":", msg + clr)
     else:
         print('\033[1;3' + a + 'm' + usr + clr + ":", msg)
 
-while 1:
-    recieved = str(con.recv(1024))
-    for data in recieved.split("\\r\\n"):
+while True:
+    response = con.recv(1024).decode("utf-8", errors="ignore")
+    for data in response.split("\n"):
         if "PRIVMSG" in data and len(data.split(CHAN + " :")) > 1:
-            usr = data.split("!")[0][3:]
-            msg = data.split(CHAN + " :")[1]
-            col(usr, msg.encode('utf-8').decode('unicode-escape'))
+            usr = re.search(r"\w+", data).group(0)
+            msg = re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :").sub("", data)
+            col(usr, msg)
         elif "PING" in data:
-            con.send(str.encode("PONG tmi.twitch.tv\r\n"))  
+            con.send("PONG tmi.twitch.tv\r\n".encode("utf-8"))  
 con.close()
