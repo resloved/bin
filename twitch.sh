@@ -11,5 +11,5 @@ else
 fi
 
 if [ ! -z "$CHN" ]; then
-    streamlink -p ffplay twitch.tv/$CHN 720p,Best &
+    streamlink --hls-segment-threads 2 -p ffplay twitch.tv/$CHN 720p,Best & 
 fi
