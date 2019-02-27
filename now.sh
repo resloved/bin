@@ -2,5 +2,4 @@
 
 # TIME => ROFI
 
-NOW=$(date +'%H:%M')
-rofi -theme output -e " $NOW"
+rofi -theme output -e " $(date +'%H:%M')"
