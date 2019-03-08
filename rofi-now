@@ -2,4 +2,4 @@
 
 # TIME => ROFI
 
-rofi -theme output -e " $(date +'%H:%M')"
+rofi -theme output -e "$(date +'%H:%M')"
