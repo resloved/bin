@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+
+
+START=$(date +%s)
+CTR=100
+
+while :
+do
+    CTR=$(($CTR-5))
+    NOW=$(date +%s)
+    DELTA=$(($NOW-$START))
+    echo "<span alpha='$CTR%'><b>$(date -d @$DELTA +%M:%S)</b></span>"
+    sleep .1
+done

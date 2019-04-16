@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+import time, math
+
+now = time.time()
+
+f = .06
+i = 80
+
+while True:
+
+    sec = time.strftime("%M:%S", time.gmtime(time.time() - now))
+    pct = round(math.sin(i * f) * 50 + 50)
+    pct = pct if pct > 0 else 1
+    icon = "<span color='#f92672'></span>"
+    fade = "<span alpha='{}%'><b>{} {}</b></span>".format(pct, icon, sec)
+    print( fade, flush=True)
+    i += 1
+    time.sleep(f)
